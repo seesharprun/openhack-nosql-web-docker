@@ -1,0 +1,32 @@
+﻿@page
+@model IndexModel
+<h1 class="display-1">
+    Companies
+</h1>
+@if (Model.Companies.Any())
+{
+    <ul class="list-group">
+        @foreach (Company company in Model.Companies)
+        {
+
+            <li class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">
+                        @company.Name
+                    </h5>
+                    <small>
+                        Active: @company.IsActive
+                    </small>
+                </div>
+                <dl class="mb-1">
+                    <dt>Location</dt>
+                    <dd>@company.City, @company.State</dd>
+                    <dt>Identifier</dt>
+                    <dd>@company.Id</dd>
+                    <dt>Created</dt>
+                    <dd>@company.CreatedOn</dd>
+                </dl>
+            </li>
+        }
+    </ul>
+}

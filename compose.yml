@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+   database:
+     image: seesharprun/openhack.nosql.db:latest
+     ports:
+       - "1433:1433"
+     volumes:
+       - database_data:/var/opt/mssql
+     restart: always
+   web:
+     depends_on:
+       - database
+     image: seesharprun/openhack.nosql.web:latest
+     ports:
+       - "80:80"
+     restart: always
+     environment:
+       ConnectionStrings__EmploymentDatabase: Data Source=database;User ID=sa;Password=demo@pass123;Initial Catalog=OpenHack;
+volumes:
+    database_data:
